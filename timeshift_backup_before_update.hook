@@ -1,0 +1,24 @@
+[Trigger]
+# Upgrade/Install should trigger a backup
+Operation = Upgrade
+Operation = Install
+# These packages will trigger backup
+Target = linux
+Target = linux-headers
+Target = linux-firmware
+#Target = linux-lts
+#Target = linux-lts-headers
+#Target = linux-zen
+#Target = linux-zen-headers
+#Target = linux-hardened
+#Target = linux-hardened-headers
+#Target = nvidia
+#Target = nvidia-dkms
+#Target = nvidia-open
+#Target = nvidia-dkms-open
+#Target = nvidia-lts
+
+
+[Action]
+When = PreTransaction
+Exec = timeshift --create --comments "Before update on $(date +"%d-%m-%y %H:%M")" --btrfs
